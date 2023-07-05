@@ -7,7 +7,6 @@ import 'package:imap/Classes/Pins.dart';
 import 'package:imap/Controller/splashScreenController.dart';
 import 'package:imap/Widgets/imap.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:imap/main.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,17 +25,19 @@ class SplashScreen extends GetView<splashScreenController> {
   late Pins _pins;
 
   Future<bool> getPins() async {
-    final String apiUrl =
-        "https://myapi.themohebbikhah.ir/app${MyApp.idApp}/iMap/init";
-    Map<String, String> postData = {"id": MyApp.idApp, "fun": "getPins"};
-    var request = http.MultipartRequest('POST', Uri.parse(apiUrl));
-    request.fields.addAll(postData);
-    http.Response response =
-        await http.Response.fromStream(await request.send());
-    if (response.statusCode == 200) {
-      print(response.body);
-      _pins = Pins.fromJson(response.body);
-      return true;
+    try {
+      String apiUrl = "https://myapi.themohebbikhah.ir/app8264973051/iMap/init";
+      Map<String, String> postData = {"id": "8264973051", "fun": "getPins"};
+      http.Response response =
+          await http.post(Uri.parse(apiUrl), body: postData);
+      if (response.statusCode == 200) {
+        print(response.body);
+        _pins = Pins.fromJson(response.body);
+        return true;
+      }
+    } catch (E) {
+      print(E);
+      return false;
     }
     return false;
   }
@@ -77,7 +78,7 @@ class SplashScreen extends GetView<splashScreenController> {
         future: _initFunction(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            if (snapshot.data as bool) {
+            if (snapshot.data == true) {
               return imap;
             } else {
               controller.setTryWidget(
