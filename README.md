@@ -1,6 +1,8 @@
 # iMap
 
-iMap application is developed by Flutter language.
+iMap is a map in your pocket.
+
+this application is developed by Flutter language.
 This program has fewer options due to API restrictions and country restrictions, and necessary updates will be made until new services are found.
 
 ## Getting Started
