@@ -8,7 +8,8 @@ class getServer {
   dynamic getInfoPoint(double Lat, double Lng) async {
     _request req2Server = _request();
     Map<String, String> headers = {
-      "Api-Key": "43611025798:6a20a51751c3f7c7a03023fe54fedf6321b18715"
+      //You can get an API_KEY from themohebbikhah.ir site, after registration, it will show you its API_KEY.
+      "Api-Key": "API_KEY"
     };
     dynamic resultFromServer = await req2Server.get(
       "LocationServices?func=p2a&lat=${Lat}&lng=${Lng}",
